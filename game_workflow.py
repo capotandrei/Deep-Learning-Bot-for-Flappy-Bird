@@ -9,7 +9,8 @@ from utils import BG_IMG, WIN_WIDTH, WIN_HEIGHT, STAT_FONT, SCORE_THRESHOLD
 GEN = 0
 
 
-def draw_window(win, birds, pipes, base, score, genom):
+def draw_window(win, birds, pipes, base, score):
+    global GEN
     win.blit(BG_IMG, (0, 0))  # blit means draw
 
     base.draw(win)
@@ -71,7 +72,6 @@ def main(genomes, config):
             if len(pipes) > 1 and birds[0].x > pipes[0].x + pipes[0].PIPE_TOP.get_width():
                 pipe_ind = 1
         else:
-            flag = False
             break
 
         for x, bird in enumerate(birds):
@@ -120,7 +120,7 @@ def main(genomes, config):
             flag = False
 
         base.move()
-        draw_window(win, birds, pipes, base, score, GEN)
+        draw_window(win, birds, pipes, base, score)
 
 
 def run(config_file):
